@@ -1,0 +1,25 @@
+@using ToolRentalWebApplication.Entities
+@using ToolRentalWebApplication.Data
+
+@model IEnumerable<Category>
+
+
+    @if (Model.Count() > 0)
+    {
+
+        <div class="row mt-3">
+            @foreach (Category item in Model)
+            {
+                <div class="col-md-3 mt-3">
+                    <a href="@Url.Action("Index", "ToolList", new { id = item.Id })" class="card-link" data-categoryId="@item.Id">
+                        <div class="card">
+                            <img class="img-thumbnail" src="@item.ThumbnailImagePath" alt="@item.Title">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Title</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    }

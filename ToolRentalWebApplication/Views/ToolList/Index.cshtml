@@ -1,0 +1,98 @@
+@model IEnumerable<ToolDetailsModel>
+
+
+@{
+    ViewData["Title"] = "ToolList";
+}
+
+
+
+<h1>Tools</h1>
+
+<p>
+    <a asp-route-categoryId="@ViewBag.CategoryId"></a>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThumbnailImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToolTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToolDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PricePerHour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PricePerDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThumbnailImagePath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToolTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToolDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricePerHour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricePerDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BranchName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="UserLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <partial name="_UserLoginPartial" model="new LoginModel
+        {
+            Email = String.Empty,
+            Password = String.Empty,
+            RememberMe = false
+        }">
+</div>
+
+<div class="modal fade" id="UserRegistrationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <partial name="_UserRegistrationPartial" model="new RegistrationModel
+        {
+            Email = String.Empty,
+            Password = String.Empty,
+            ConfirmPassword = String.Empty,
+            FirstName = String.Empty,
+            LastName = String.Empty,
+            PhoneNumber = String.Empty,
+            Address1 = String.Empty,
+            Address2 = String.Empty,
+            PostCode = String.Empty,
+            AcceptUserAgreement = false
+        }">
+</div>
+

@@ -1,0 +1,20 @@
+@using ToolRentalWebApplication.Data
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin"))
+{
+    <li class="nav-item dropdown show">
+        <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Admin</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
+            <a class="dropdown-item" href="#">Customers</a>
+            <a class="dropdown-item" asp-area="Admin" asp-controller="Branch" asp-action="Index">Branches</a>
+            <a class="dropdown-item" href="#">Rentals</a>
+            <a class="dropdown-item" href="#">Reservations</a>
+        </div>
+    </li>
+}

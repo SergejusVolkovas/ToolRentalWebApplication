@@ -1,0 +1,19 @@
+@using ToolRentalWebApplication.Data
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "employeezirmunai") ||
+     SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "employeeantakalnis") ||
+     SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "employeekaroliniskes"))
+{
+<li class="nav-item dropdown show">
+    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Employee</a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" asp-area="Employee" asp-controller="Reservation" asp-action="Index">Reservations</a>
+        <a class="dropdown-item" asp-area="Employee" asp-controller="Rental" asp-action="Index">Rentals</a>
+    </div>
+</li>
+}
